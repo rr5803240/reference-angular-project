@@ -1,0 +1,50 @@
+
+
+<div class="foodSection">
+    
+
+   <div class="row">
+      <div class="col-10">
+      
+     
+            <section class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </section>
+
+           
+               <div class="row justify-content-between">
+                  <div class="col-3  border" *ngFor="let item of foodItems">
+                     <div class="row  text-center mb-2">
+                        <div class="col-8">
+                           <img class="img-fluid mt-3" src="{{item.imageUrl}}" alt="Card image cap">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <h6 class="card-title font-weight-bold"> {{item.restaurantName}}</h6>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <p class="card-text">
+                              <small> {{item.dishName}} </small>
+                           </p>
+                        </div>
+                        <div class="col-md-6">
+                           <p class="text-right">
+                              <small>{{item.cost| currency: "INR"}} </small>
+                           </p>
+                        </div>
+                     </div>
+                     <div class="row text-center mb-1">
+                        <div class="col-12">
+                           <button class="btn btn-sm btn-primary" (click)="addToCart(item)">Add to Cart</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+         
+            </div>
+   </div>
+</div>

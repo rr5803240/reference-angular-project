@@ -1,0 +1,19 @@
+img{
+
+    height:120px;
+
+    width:auto;
+
+}
+
+.border{
+    margin:10px;
+}
+
+.foodSection{
+    display: flex;
+    justify-content: center;
+
+}
+
+

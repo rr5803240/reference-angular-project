@@ -1,0 +1,14 @@
+.container{
+   display:flex;
+  margin-top:5%;
+    
+   justify-content:center;
+}
+.card{
+     width:500px;
+}
+
+form{
+    width:500px;
+    padding:30px;
+}

@@ -1,0 +1,48 @@
+<div class="col-xl-8 cart">
+    <div class="card">
+       <div class="card-header">
+          <h3>Contents of your Cart</h3>
+       </div>
+       <div class="card-body">
+          <div class="row">
+             <div class="col-12">
+                <div class="text-danger" *ngIf="errorItem">
+                   You have already this item in your list
+                </div>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-12">
+                <table class="table table-borderless">
+                   <thead>
+                      <tr>
+                         <th>Sr No</th>
+                         <th>Order</th>
+                         <th>Cost</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr *ngFor="let cart of cartItems;let i =index">
+                          <td>{{i+1}}</td>
+                         <td>{{cart.dishName}} </td>
+                         <td>{{cart.cost}} </td>
+                      </tr>
+                   
+                   </tbody>
+                   <tfoot> Total {{total()||'' | currency:'INR'}}</tfoot>
+                </table>
+             </div>
+          </div>
+       </div>
+       <div class="card-footer   text-left">
+          Total Amount:  {{total()||'' | currency:'INR'}}
+       </div>
+    
+    </div>
+    <button class="btn btn-primary">
+            Place Order
+        </button>
+        <button class="btn btn-deafult" routerLink="/home/food">
+               Home
+           </button>
+ </div>
