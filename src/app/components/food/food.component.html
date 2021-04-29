@@ -1,0 +1,113 @@
+
+
+<div class="foodSection">
+    
+
+   <div class="row">
+      <div class="col-10">
+      
+     
+            <section class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+              [(ngModel)]="searchText" >
+              
+            </section>
+
+           
+               <div class="row justify-content-between">
+                  <div class="col-3  border" *ngFor="let item of foodItems | listFilter:searchText">
+                     <div class="row  text-center mb-2">
+                        <div class="col-12">
+                           <img class="img-fluid mt-3" src="{{item.imageUrl}}" alt="Card image cap">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <h6 class="card-title font-weight-bold"> {{item.restaurantName | titlecase }}</h6>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <p class="card-text">
+                              <small> {{item.dishName | titlecase}} </small>
+                           </p>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="card-text">
+                               <small>{{item.description}} </small>
+                            </p>
+                         </div>
+                        <div class="col-md-12">
+                            <p class="card-text">
+                               <small> Ratings * {{item.rating}} </small>
+                            </p>
+                         </div>
+
+                        <div class="col-md-12">
+                           <p class="text-right">
+                              <small>Cost: {{item.cost| currency: "INR"}} </small>
+                           </p>
+                        </div>
+                     </div>
+                     <div class="row text-center mb-1">
+                        <div class="buttonSection">
+                            <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" (click)="addToCart(item)" data-target="#addCartModal">
+                                Add to Cart
+                              </button>
+                           <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" (click)="addToCart(item)" data-target="#placeOrderModal" >
+                              Buy / Order
+                            </button>
+                          </div>
+                     </div>
+                  </div>
+                 
+               </div>
+         
+            </div>
+   </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog" aria-labelledby="addCartLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="addCartModalLabel">Are you sure you want to add  this item to the cart?</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p *ngIf="foodItemTobeAddedInCart">{{foodItemTobeAddedInCart.dishName | titlecase }} | {{foodItemTobeAddedInCart.cost| currency: "INR" }} </p>
+            <p>Click on Add  to Cart to proceed further</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="confirmCart()">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="placeOrderModal" tabindex="-1" role="dialog" aria-labelledby="placeOrderLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="modal-title" id="placeOrderLabel">Are you sure you want to Place the order?</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <p *ngIf="foodItemTobeAddedInCart">{{foodItemTobeAddedInCart.dishName | titlecase }} | {{foodItemTobeAddedInCart.cost| currency: "INR" }} </p>
+              <p>Click on Add  to Cart to proceed further</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal"(click)="placeOrder()">Place Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+

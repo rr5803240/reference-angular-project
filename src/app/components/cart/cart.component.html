@@ -39,7 +39,7 @@
        </div>
     
     </div>
-    <button class="btn btn-primary">
+    <button  [disabled]="cartItems && cartItems.length===0" class="btn btn-primary" (click)="placeOrder()">
             Place Order
         </button>
         <button class="btn btn-deafult" routerLink="/home/food">

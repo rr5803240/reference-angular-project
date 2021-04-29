@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { foodItem , User} from '../interfaces';
-import { FoodService, AuthenticationService, CartService } from '../services';
-import { Subscription } from '../../../node_modules/rxjs';
-import { first } from '../../../node_modules/rxjs/operators';
-import { Router } from '../../../node_modules/@angular/router';
+import { foodItem , User} from '../../interfaces';
+import { FoodService, AuthenticationService, CartService, AlertService } from '../../services';
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-food-item',
   templateUrl: './food.component.html',
@@ -16,9 +16,11 @@ export class FoodComponent implements OnInit, OnDestroy {
   public selectedFoodItem: any;
   public foodItemList: any[] = [];
   public errorItem: boolean = false;
+  public searchText:string = '';
   public currentUserSubscription: Subscription;
-
+  public foodItemTobeAddedInCart:foodItem ={} as foodItem;
   constructor(
+    private alertService: AlertService,
     private authenticationService: AuthenticationService,
     private foodService: FoodService,
     private CartService: CartService,
@@ -54,14 +56,32 @@ export class FoodComponent implements OnInit, OnDestroy {
     }
 
   public addToCart(item):void {
-    if (this.foodItemList.indexOf(item) === -1) {
-      this.foodItemList.push(item);
-      this.CartService.setCartwithItems( this.foodItemList)
+    this.foodItemTobeAddedInCart = item;
+  }
+
+  public confirmCart():void{
+    if (this.foodItemList.indexOf(this.foodItemTobeAddedInCart) === -1) {
+      this.foodItemList.push(this.foodItemTobeAddedInCart);
+    
       this.errorItem = false;
+      
     }
-    else if (this.foodItemList.indexOf(item) > -1) {
+    else if (this.foodItemList.indexOf(this.foodItemTobeAddedInCart) > -1) {
       this.errorItem = true;
     }
+    this.CartService.setCartwithItems( this.foodItemList)
+  }
+
+  public placeOrder():void{
+    this.CartService.placeOrder([this.foodItemTobeAddedInCart]).subscribe(
+      data => {
+        this.alertService.success('Order Placed SuccessFully', true);
+        this.router.navigate(['/home/track-order']);
+        this.CartService.emptyCart();
+      },
+      error => {
+          this.alertService.error(error);
+      });
   }
 
 

@@ -1,0 +1,11 @@
+.card{
+    margin:25px;
+}
+
+section{
+    display: flex;
+    flex-direction: row; 
+}
+.about{
+    margin:30px;
+}

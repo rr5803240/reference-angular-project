@@ -5,6 +5,8 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
+
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
 const feedItems =[{
     "feedId": 1,
     "restaurant": "reddys biriyani zone",
@@ -132,6 +134,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                      return getAllFoodItems();
                 case url.endsWith('/users/validateEmail') && method === 'POST':
                     return validateEmail();
+                case url.endsWith('/cart/orders') && method === 'GET':
+                    return getAllOrders();
+                case url.endsWith('/cart/placeOrder') && method === 'POST':
+                    return placeOrder();
                 case url.endsWith('/users/authenticate') && method === 'POST':
                     return authenticate();
                 case url.endsWith('/users/register') && method === 'POST':
@@ -190,6 +196,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
+        function placeOrder() {
+            orders.push({ id: Math.random(), placedOrder:body});
+            localStorage.setItem('orders', JSON.stringify(orders));
+            return ok();
+        }
         
 
         function getUsers() {
@@ -208,6 +219,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getAllFoodItems() {
             if (!isLoggedIn()) return unauthorized();
             return ok(JSON.parse(localStorage.getItem('feed')) || []);
+        }
+        function getAllOrders() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(JSON.parse(localStorage.getItem('orders')) || []);
         }
 
         // helper functions

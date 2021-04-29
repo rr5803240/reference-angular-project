@@ -8,14 +8,14 @@
                   <a class="nav-link" routerLink="/home/cart">Cart</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Edureka
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    User
                   </a>
                   <span class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Track Order</a>
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" routerLink="/home/track-order">Track Order</a>
+                    <a class="dropdown-item" routerLink="/home/profile">Profile</a>
+                    <a class="dropdown-item" routerLink="/home/settings">Settings</a>
+                    <a class="dropdown-item" routerLink="/Logout">Logout</a>
                   </span>
                 </li>
               </ul>
@@ -24,6 +24,3 @@
         <router-outlet></router-outlet>
         
 </div>
-
-
-

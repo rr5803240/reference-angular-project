@@ -16,5 +16,16 @@ export class CartService {
         return this.cart;
     }
 
+    placeOrder(item:foodItem[]){
+            return this.http.post(`/cart/placeOrder`, item);
+             
+    }
 
+    getAllOrders(){
+        return this.http.get<foodItem[]>(`/cart/orders`);
+    }
+
+    emptyCart(){
+        this.cart=[];
+    }
 }

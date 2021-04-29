@@ -10,10 +10,8 @@ img{
     margin:10px;
 }
 
-.foodSection{
-    display: flex;
-    justify-content: center;
-
+.buttonSection button{
+    margin-left:50px;
+    margin-bottom:20px;
 }
-
 

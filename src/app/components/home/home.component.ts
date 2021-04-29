@@ -3,8 +3,8 @@ import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 
-import { UserService, AuthenticationService } from '../services';
-import { User} from '../interfaces'
+import { UserService, AuthenticationService } from '../../services';
+import { User} from '../../interfaces'
 @Component({ 
     selector:'app-home',
     styleUrls:['home.component.css'],

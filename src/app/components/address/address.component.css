@@ -1,0 +1,23 @@
+.container{
+    display:flex;
+   margin-top:5%;
+    flex-direction: row ;
+
+ }
+ .card{
+      width:500px;
+ }
+ 
+ form{
+     width:500px;
+     padding:30px;
+ }
+
+ .addressCard{
+     width:200px;
+     margin:10px;
+ }
+
+ button{
+     margin:10px;
+ }

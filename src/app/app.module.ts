@@ -3,18 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { AlertComponent } from './alert/alert.component';
+;
 import {  HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { fakeBackendProvider } from './helpers';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
-import { FoodComponent } from './food/food.component';
-import { HomeComponent } from './home/home.component';
-import { CartComponent } from './cart/cart.component';
+
+import { ListFilterPipe } from './filters/filter';
+import { FoodComponent } from './components/food/food.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { HomeComponent } from './components/home/home.component';
+import { CartComponent } from './components/cart/cart.component';
+import { TrackOrderComponent } from './components/track-order/track-order.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CardComponent } from './components/card/card.component';
+import { AddressComponent } from './components/address/address.component';
 
 
 
@@ -28,7 +37,13 @@ import { CartComponent } from './cart/cart.component';
     HomeComponent,
     AlertComponent,
     FoodComponent,
-    CartComponent
+    CartComponent,
+    ListFilterPipe,
+    TrackOrderComponent,
+    SettingsComponent,
+    ProfileComponent,
+    CardComponent,
+    AddressComponent
   ],
   imports: [
     HttpClientModule,
